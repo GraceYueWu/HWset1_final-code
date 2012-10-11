@@ -1,5 +1,1246 @@
-1. A
-2. B
-3. C
-4. X
-5. D
+\documentclass[12pt]{article}
+\usepackage{listings}
+\usepackage[colorlinks=true,pagebackref,linkcolor=blue]{hyperref}
+\textwidth=7in
+\textheight=9.5in
+\topmargin=-1in
+\headheight=0in
+\headsep=.5in
+\hoffset  -.85in
+
+\lstset{
+basicstyle=\footnotesize\ttfamily,
+language=bash,
+upquote=true,
+breakatwhitespace=true,
+columns=fullflexible,
+keepspaces,
+%numbers=none,
+tabsize=3,
+frame=blrt,
+framextopmargin=5pt,
+showstringspaces=false,
+extendedchars=true
+}
+
+\pagestyle{empty}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\begin{document}
+
+
+
+\begin{center}
+{\bf AMS 550.400 \quad HW SET 1\quad  Due Date:  Oct 8}\\
+\vskip.2in
+{\footnotesize Last Compiled on \today}
+\end{center}
+
+\setlength{\unitlength}{1in}
+
+\begin{picture}(6,.1) 
+\put(0,0) {\line(1,0){6.25}}         
+\end{picture}
+
+ 
+
+ \renewcommand{\arraystretch}{2}
+
+ \noindent\textbf{General Instruction:} 
+ To complete the homework set, you are required to do the followings. 
+ Your solutions must be typed in \LaTeX\ using the course homework
+ template.  
+ The progression of your homework solution is to be
+ ``recorded'' by making a git folder specifically for this homework
+ set.  The burden of proof is on you, and if your git commit history
+ is sparse, then you may be liable for a penalty.  
+ A paper copy of the PDF output of your \LaTeX\ file is 
+ to be submitted to your instructor in class on the due date.
+ \emph{After} submitting the paper copy, but \emph{before} the end of
+ the due date, you will upload your work to your github by making a remote repository
+ specifically for the homework, and post the link to the repository 
+ at the designated \emph{Discussion} forum in Blackboard by making 
+ a thread just for you.  The repository name in your github should be
+ \texttt{550400.homeworkset.1} and the discussion forum thread should
+ be named \texttt{YourFirstNameMiddleInitialLastName}, e.g.,
+ \texttt{BaracHObama} and \texttt{WillardMRommey}. 
+ You have till the end of 
+ the due date to finalize your github repository.  
+ However, any commit made after the class time of the due date will be 
+ inadmissible. \emph{Your attention to details in following this instruction will be 
+ critical, and if not followed exactly at the time of collection, the
+ homework set may be graded at $90\%$ of the full score}.
+
+ \vskip.25in
+ \noindent\textbf{Problem 1 (10 pts):}  
+ Assume that you are starting from ``scratch'' at the directory \verb+~/+.
+ Provide a sequence of git/bash commands that yields a git folder with 
+ a commit history such that:
+ \begin{itemize}
+ \item the \emph{master} branch has commits $A$, $B$, $C$, $X$ and $D$,
+ \item the \emph{alt} branch has commits $A$, $B$, $X$,
+ \end{itemize}
+ Suppose that you are currently working on \texttt{master} branch. Draw 
+ its commit history graph (i.e., the graph portion of the output of
+ \verb+git log --graph --oneline+).  Next, assume that 
+ you are on \texttt{alt} branch. Draw its commit history graph.  
+ \\
+ \\wx@WX-THINK ~ (master)
+ \\$ mkdir HWset1P1.git
+ \\
+ \\wx@WX-THINK ~ (master)
+ \\$ cd HWset1P1.git
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git init .
+ \\Initialized empty Git repository in \\c:/Users/wx/HWset1P1.git/.git/
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ vi main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git add .
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git commit -m "A"
+ \\[master (root-commit) 966ebd1] A
+ \\1 file changed, 2 insertions(+)
+ \\create mode 100644 main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ vi main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git add .
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git commit -m "B"
+ \\[master 093ed8d] B
+ \\1 file changed, 1 insertion(+)
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git branch alt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ vi main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git add .
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git commit -m "C"
+ \\[master 84ae6ec] C
+ \\ 1 file changed, 1 insertion(+), 1 deletion(-)
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ vi main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git add .
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git checkout alt
+ \\Switched to branch 'alt'
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (alt)
+ \\$ git commit -m "X"
+ \\[master 78ea7de] X
+ \\ 1 file changed, 1 insertion(+)
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (alt)
+ \\$ git checkout master
+ \\Switched to branch 'master'
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ vi main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master)
+ \\$ git merge alt
+ \\Auto-merging main.txt
+ \\CONFLICT (content): Merge conflict in main.txt
+ \\Automatic merge failed; fix conflicts and then commit the result.
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+ \\$ vi main.txt
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+ \\$ git add .
+ \\
+ \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+ \\$ git commit -m "D"
+ \\[master 871cb54] D
+ \\
+ \\$ git log --graph --oneline
+ \\*   871cb54 D
+ \\|\
+ \\* | 78ea7de X
+ \\* | 84ae6ec C
+ \\|/
+ \\* 093ed8d B
+ \\* 966ebd1 A
+ \\
+ \vskip.25in
+ \noindent\textbf{Problem 2 (10 pts):}
+ Assume that you are starting from ``scratch'' at the directory \verb+~/+.
+ Provide a sequence of git/bash commands that yields a git folder and 
+ \begin{itemize}
+ \item configure your git with your name and your email address,
+ \item set up an alias for each of the git remotes listed below:
+ \begin{verbatim}
+ git://github.com/nhlee/550400.stanza1.git 
+ git://github.com/nhlee/550400.stanza2.git 
+ git://github.com/nhlee/550400.stanza3.git 
+ \end{verbatim}
+ Assume that each remote contains exactly single commit with 
+ a txt file for a single (different) stanza,
+ \item pull to combine three stanzas of a poem,
+ \item after the first pull, add the title of the poem,
+ \item after the second and third pull, resolve the merge conflict,
+ \item after resolving the third pull merge conflict, push the result
+   to your (newly created) remote repository. 
+   \end{itemize}
+
+   \\wx@WX-THINK ~ (master)
+   \\$ mkdir HWset1P2.git
+   \\
+   \\wx@WX-THINK ~ (master)
+   \\$ cd HWset1P2.git
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git init
+   \\Initialized empty Git repository in c:/Users/wx/HWset1P2.git/.git/
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git config --global user.name "GraceYueWu"
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git config --global user.email graceyue523@gmail.com
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git remote add stanza1 https://github.com/nhlee/550400.stanza1.git
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git remote add stanza2 https://github.com/nhlee/550400.stanza2.git
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git remote add stanza3 https://github.com/nhlee/550400.stanza3.git
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git pull stanza1 master
+   \\remote: Counting objects: 3, done.
+   \\remote: Compressing objects: 100% (2/2), done.
+   \\remote: Total 3 (delta 0), reused 3 (delta 0)
+   \\Unpacking objects: 100% (3/3), done.
+   \\From https://github.com/nhlee/550400.stanza1
+   \\ * branch            master     -> FETCH_HEAD
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ vi main.txt
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git add .
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git commit -m "Title added"
+   \\[master c1d7d6c] Title added
+   \\ 1 file changed, 1 insertion(+)
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git pull stanza2 master
+   \\remote: Counting objects: 5, done.
+   \\remote: Compressing objects: 100% (2/2), done.
+   \\remote: Total 3 (delta 0), reused 3 (delta 0)
+   \\Unpacking objects: 100% (3/3), done.
+   \\From https://github.com/nhlee/550400.stanza2
+   \\ * branch            master     -> FETCH_HEAD
+   \\Auto-merging main.txt
+   \\CONFLICT (content): Merge conflict in main.txt
+   \\Automatic merge failed; fix conflicts and then commit the result.
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+   \\$ vi main.txt
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+   \\$ git add .
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+   \\$ git commit -m "2nd one"
+   \\[master aad3fee] 2nd one
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git pull stanza3 master
+   \\remote: Counting objects: 5, done.
+   \\remote: Compressing objects: 100% (2/2), done.
+   \\remote: Total 3 (delta 0), reused 3 (delta 0)
+   \\Unpacking objects: 100% (3/3), done.
+   \\From https://github.com/nhlee/550400.stanza3
+   \\ * branch            master     -> FETCH_HEAD
+   \\Auto-merging main.txt
+   \\CONFLICT (content): Merge conflict in main.txt
+   \\Automatic merge failed; fix conflicts and then commit the result.
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+   \\$ vi main.txt
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+   \\$ git add .
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+   \\$ git commit -m "third one"
+   \\[master f14c639] third one
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git remote add problem2 https://github.com/GraceYueWu/HWset1_Problem2.git
+   \\
+   \\wx@WX-THINK ~/HWset1P2.git (master)
+   \\$ git push problem2 master
+   \\Username for 'https://github.com':
+   \\Password for 'https://GraceYueWu@github.com':
+   \\Counting objects: 18, done.
+   \\Delta compression using up to 2 threads.
+   \\Compressing objects: 100% (12/12), done.
+   \\Writing objects: 100% (18/18), 1.59 KiB, done.
+   \\Total 18 (delta 6), reused 0 (delta 0)
+   \\To https://github.com/GraceYueWu/HWset1_Problem2.git
+   \\ * [new branch]      master -> master
+
+   \newpage
+   \noindent\textbf{Problem 3 (40 pts):}
+   Consider a team of four students, say, $A$, $B$, $C$ and $D$, 
+   who just started working 
+   on writing a \texttt{latex/beamer} file, say \texttt{main.tex}, 
+   for a class presentation of their work statement.  
+   Assume that they do not wish to coordinate their schedules for a
+   concurrent group meeting (both virtually and physically).  
+   Assume that:
+   \begin{itemize}
+   \item $A$ is in charge of \emph{Introduction},
+   \item $B$ is of \emph{Problem Statement}, 
+   \item $C$ is of  \emph{Timeline},
+   \item $D$ is of \emph{Deliverable} part of the presentation.  
+   \end{itemize}
+   In other words, their contributions to \texttt{main.tex} do not overlap.
+   Then, 
+   \begin{itemize}
+   \item first, devise a work flow strategy for the team so that they can
+     collaborate asynchronously using \texttt{git},
+     \item next, devise yet another \texttt{git} strategy different from your earlier
+       proposal.  
+       \end{itemize}
+       Finally,
+       \begin{itemize}
+       \item discuss the strength and weakness of each of your proposed strategies in terms of merge
+       conflicts resolution,
+       \item make the final recommendation.  
+       \end{itemize}
+       In order to answer this question, \emph{build}
+       a mathematical model, \emph{following} the guideline from IMM. 
+       Use Section 1.4 and Section 1.5 of IMM as \emph{role models}.    
+       For example, you are to identify which variables  are exogenous 
+       and which are endogenous.  More specifically, among other things, 
+       in your model, is the preamble part of \texttt{main.tex} an endogenous 
+       or exogenous variable?  
+       Note also that in addition to this issue, there are other issues that
+       you are to consider.  So, \emph{be sure to consult IMM}. 
+       \\
+       \\Let: xij be the contribute from person i to the whole project at the j th time
+       \\       Xi be the eventual result from person i
+       \\       y is the final result of work statement
+       \\
+       \\Strategy 1, using one single branch. Because contribution from each person does not overlap, so each person edit their own part and commit to the final result. After each modification, push the file to the same branch and it won't overlap others' part. Hence the model will be like 
+       \\Y=Sum(xij),
+       \\where xij is exgenous variable and y is endogenous variable 
+       \\Strength of this strategy is that all the group members will be able to track others' work. So that they can be aware of the big picture. Although the four group members are working on different parts, they are not completely independent. Hence this strategy will help to build a better communication within the group. Weakness of this strategy are: 
+       \\1. It is easy for to forget deleting the original part before modification. In that case, there will be couple edition of each part in the final result and become very hard to do the final modification.
+       \\2. This strategy may improve the risk of accidental deleting. Because there is only one branch, people may accidentally made some change on others' work.
+       \\ 
+       \\Strategy 2, every group member build one branch inwhich they can revise their own work and commit. After all the work is done, they merge the four branches and get the final result. So the model will be:
+       \\Step 1: Xi=Sumj(xij)
+       \\step 2: Y=Sumi(Xi)
+       \\Where xij will be exgenous variables, Y and Xi will be endogenous variables
+       \\This strategy will completely avoid accidental deleting or modification. Also, in the final report, there will be only one edition of each part which is very clear. However, the weakness of this strategy is that group members will lose their view of the big picture and have no clue about what others are doing.
+       \\
+       \vskip0.25in
+       \noindent\textbf{Problem 4 (aka.\ Fair Play, 40 pts):}
+       Answer the following question:
+       \begin{verse}
+       Is the tennis game fair?
+       \end{verse}
+       Note that unlike Problem 3, this question is vaguely stated.
+       This is intensional, whence to begin, you will first need to clarify
+       what exactly your question is.
+       You may use the class discussion on this particular 
+       problem, but you \emph{may not} directly refer to our 
+       discussion.  Instead, formulate the model carefully but concisely in 
+       your own words.   
+       \\
+       \\First, define fair play in this model:
+       \\For two equally skillful players in a complete tennis game, the probability of winning will be equal no matter which player serve first.
+       \\Assume the winning probability for the serving player be a, hence the probability of winning for the other player will be 1-a.
+       \\In one game, winning the game means getting 4 points first. That contains several senarios:
+       \\1. Serving player win 4 times in a row. The probability will be p11=a*a*a*a
+       \\2. Serving player won 3 times lose one time and win the last time, the probability will be p12=4*a*a*a*(1-a)*a
+       \\3. Serving player win 3 times, lose 2 times and win the last time, the probability will be p13=(5*4)*a*a*a(1-a)*(1-a)*a
+       \\4. Serving player win 3 times, lose 3times and win the last time, the proability will be P14=(6*5*4)*a*a*a*(1-a)*(1-a)*(1-a)*a
+       \\The winnning percentage of serving player in one game P = Sumi(P1i), while the winning percentage of other player will be 1-P.
+       \\For the whole game, there will be n games. n will be a odd number. Player who won (n+1)/2 times wins.
+       \\Using n=3 as an example, the scenarios for the serving player to win the game are: 
+       \\1. Win twice in a row,
+       \\2. Win once, lose once, win the last time.
+       \\3. Lose one game, win the last two times.
+       \\Hence the winning percentage of the first serving player will be: 
+       \\Pr=P*(1-P)+P*P*P+(1-P)*(1-P)*P
+       \\If Pr=0.5, than this is a fair game.
+       \\For n=5,7,9,11,..., we can use the same method to see if it will be a fair game or not. 
+       \\However, there is some disadvantage of this model: 
+       \\First, if is easy to find out that for a>0.5, the winning percentage of first serving player will always be larger than 0.5 and leading to unfairness. Because for a even score, the first serving player will have advantage in the tiebreaker. So most games will switch serving order in tie breaker. 
+       \\Secondly, even there is a game where Pr=0.5, is it trully a fair game? This model only discussed the situation for equally skilled players. What if the two players were not completely equal? Will the game be called fair game if the weaker player could gain some advantage by serving first? 
+       \\In conclusion, further discussion could be done in this model. 
+       \\
+       \vskip0.25in
+       \noindent\textbf{Final Remarks about Problem 3 \& Problem 4:} 
+       They are open-ended problems.  However, your scores will be determined
+       by how well do you follow the exposition style outlined by IMM and
+       WMA.  For both problems, your write-up should be 
+       \begin{itemize}
+       \item self-contained,
+       \item covering all four parts of Section 1.3 of IMM,
+       \item paying a particular attention to any causal relation that you
+         might be investigating, following Chapter 3 of WMA,
+	 \item answering questions that are explicitly asked in the problem statements.
+	 \end{itemize}
+	 For Problem 3, focus mostly on Step 2 and Step 3 of Section
+	 1.3 of IMM.  For Problem 4, focus mostly on Step 1 and Step
+	 2.  For each problem, minimum 1 pages and maximum 2 pages.
+	 \end{document}\documentclass[12pt]{article}
+	 \usepackage{listings}
+	 \usepackage[colorlinks=true,pagebackref,linkcolor=blue]{hyperref}
+	 \textwidth=7in
+	 \textheight=9.5in
+	 \topmargin=-1in
+	 \headheight=0in
+	 \headsep=.5in
+	 \hoffset  -.85in
+
+	 \lstset{
+	 basicstyle=\footnotesize\ttfamily,
+	 language=bash,
+	 upquote=true,
+	 breakatwhitespace=true,
+	 columns=fullflexible,
+	 keepspaces,
+	 %numbers=none,
+	 tabsize=3,
+	 frame=blrt,
+	 framextopmargin=5pt,
+	 showstringspaces=false,
+	 extendedchars=true
+	 }
+
+	 \pagestyle{empty}
+
+	 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+	 \begin{document}
+
+
+
+	 \begin{center}
+	 {\bf AMS 550.400 \quad HW SET 1\quad  Due Date:  Oct 8}\\
+	 \vskip.2in
+	 {\footnotesize Last Compiled on \today}
+	 \end{center}
+
+	 \setlength{\unitlength}{1in}
+
+	 \begin{picture}(6,.1) 
+	 \put(0,0) {\line(1,0){6.25}}         
+	 \end{picture}
+
+	  
+
+	  \renewcommand{\arraystretch}{2}
+
+	  \noindent\textbf{General Instruction:} 
+	  To complete the homework set, you are required to do the followings. 
+	  Your solutions must be typed in \LaTeX\ using the course homework
+	  template.  
+	  The progression of your homework solution is to be
+	  ``recorded'' by making a git folder specifically for this homework
+	  set.  The burden of proof is on you, and if your git commit history
+	  is sparse, then you may be liable for a penalty.  
+	  A paper copy of the PDF output of your \LaTeX\ file is 
+	  to be submitted to your instructor in class on the due date.
+	  \emph{After} submitting the paper copy, but \emph{before} the end of
+	  the due date, you will upload your work to your github by making a remote repository
+	  specifically for the homework, and post the link to the repository 
+	  at the designated \emph{Discussion} forum in Blackboard by making 
+	  a thread just for you.  The repository name in your github should be
+	  \texttt{550400.homeworkset.1} and the discussion forum thread should
+	  be named \texttt{YourFirstNameMiddleInitialLastName}, e.g.,
+	  \texttt{BaracHObama} and \texttt{WillardMRommey}. 
+	  You have till the end of 
+	  the due date to finalize your github repository.  
+	  However, any commit made after the class time of the due date will be 
+	  inadmissible. \emph{Your attention to details in following this instruction will be 
+	  critical, and if not followed exactly at the time of collection, the
+	  homework set may be graded at $90\%$ of the full score}.
+
+	  \vskip.25in
+	  \noindent\textbf{Problem 1 (10 pts):}  
+	  Assume that you are starting from ``scratch'' at the directory \verb+~/+.
+	  Provide a sequence of git/bash commands that yields a git folder with 
+	  a commit history such that:
+	  \begin{itemize}
+	  \item the \emph{master} branch has commits $A$, $B$, $C$, $X$ and $D$,
+	  \item the \emph{alt} branch has commits $A$, $B$, $X$,
+	  \end{itemize}
+	  Suppose that you are currently working on \texttt{master} branch. Draw 
+	  its commit history graph (i.e., the graph portion of the output of
+	  \verb+git log --graph --oneline+).  Next, assume that 
+	  you are on \texttt{alt} branch. Draw its commit history graph.  
+	  \\
+	  \\wx@WX-THINK ~ (master)
+	  \\$ mkdir HWset1P1.git
+	  \\
+	  \\wx@WX-THINK ~ (master)
+	  \\$ cd HWset1P1.git
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git init .
+	  \\Initialized empty Git repository in \\c:/Users/wx/HWset1P1.git/.git/
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ vi main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git add .
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git commit -m "A"
+	  \\[master (root-commit) 966ebd1] A
+	  \\1 file changed, 2 insertions(+)
+	  \\create mode 100644 main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ vi main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git add .
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git commit -m "B"
+	  \\[master 093ed8d] B
+	  \\1 file changed, 1 insertion(+)
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git branch alt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ vi main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git add .
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git commit -m "C"
+	  \\[master 84ae6ec] C
+	  \\ 1 file changed, 1 insertion(+), 1 deletion(-)
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ vi main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git add .
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git checkout alt
+	  \\Switched to branch 'alt'
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (alt)
+	  \\$ git commit -m "X"
+	  \\[master 78ea7de] X
+	  \\ 1 file changed, 1 insertion(+)
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (alt)
+	  \\$ git checkout master
+	  \\Switched to branch 'master'
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ vi main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master)
+	  \\$ git merge alt
+	  \\Auto-merging main.txt
+	  \\CONFLICT (content): Merge conflict in main.txt
+	  \\Automatic merge failed; fix conflicts and then commit the result.
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+	  \\$ vi main.txt
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+	  \\$ git add .
+	  \\
+	  \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+	  \\$ git commit -m "D"
+	  \\[master 871cb54] D
+	  \\
+	  \\$ git log --graph --oneline
+	  \\*   871cb54 D
+	  \\|\
+	  \\* | 78ea7de X
+	  \\* | 84ae6ec C
+	  \\|/
+	  \\* 093ed8d B
+	  \\* 966ebd1 A
+	  \\
+	  \vskip.25in
+	  \noindent\textbf{Problem 2 (10 pts):}
+	  Assume that you are starting from ``scratch'' at the directory \verb+~/+.
+	  Provide a sequence of git/bash commands that yields a git folder and 
+	  \begin{itemize}
+	  \item configure your git with your name and your email address,
+	  \item set up an alias for each of the git remotes listed below:
+	  \begin{verbatim}
+	  git://github.com/nhlee/550400.stanza1.git 
+	  git://github.com/nhlee/550400.stanza2.git 
+	  git://github.com/nhlee/550400.stanza3.git 
+	  \end{verbatim}
+	  Assume that each remote contains exactly single commit with 
+	  a txt file for a single (different) stanza,
+	  \item pull to combine three stanzas of a poem,
+	  \item after the first pull, add the title of the poem,
+	  \item after the second and third pull, resolve the merge conflict,
+	  \item after resolving the third pull merge conflict, push the result
+	    to your (newly created) remote repository. 
+	    \end{itemize}
+
+	    \\wx@WX-THINK ~ (master)
+	    \\$ mkdir HWset1P2.git
+	    \\
+	    \\wx@WX-THINK ~ (master)
+	    \\$ cd HWset1P2.git
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git init
+	    \\Initialized empty Git repository in c:/Users/wx/HWset1P2.git/.git/
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git config --global user.name "GraceYueWu"
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git config --global user.email graceyue523@gmail.com
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git remote add stanza1 https://github.com/nhlee/550400.stanza1.git
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git remote add stanza2 https://github.com/nhlee/550400.stanza2.git
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git remote add stanza3 https://github.com/nhlee/550400.stanza3.git
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git pull stanza1 master
+	    \\remote: Counting objects: 3, done.
+	    \\remote: Compressing objects: 100% (2/2), done.
+	    \\remote: Total 3 (delta 0), reused 3 (delta 0)
+	    \\Unpacking objects: 100% (3/3), done.
+	    \\From https://github.com/nhlee/550400.stanza1
+	    \\ * branch            master     -> FETCH_HEAD
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ vi main.txt
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git add .
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git commit -m "Title added"
+	    \\[master c1d7d6c] Title added
+	    \\ 1 file changed, 1 insertion(+)
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git pull stanza2 master
+	    \\remote: Counting objects: 5, done.
+	    \\remote: Compressing objects: 100% (2/2), done.
+	    \\remote: Total 3 (delta 0), reused 3 (delta 0)
+	    \\Unpacking objects: 100% (3/3), done.
+	    \\From https://github.com/nhlee/550400.stanza2
+	    \\ * branch            master     -> FETCH_HEAD
+	    \\Auto-merging main.txt
+	    \\CONFLICT (content): Merge conflict in main.txt
+	    \\Automatic merge failed; fix conflicts and then commit the result.
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+	    \\$ vi main.txt
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+	    \\$ git add .
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+	    \\$ git commit -m "2nd one"
+	    \\[master aad3fee] 2nd one
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git pull stanza3 master
+	    \\remote: Counting objects: 5, done.
+	    \\remote: Compressing objects: 100% (2/2), done.
+	    \\remote: Total 3 (delta 0), reused 3 (delta 0)
+	    \\Unpacking objects: 100% (3/3), done.
+	    \\From https://github.com/nhlee/550400.stanza3
+	    \\ * branch            master     -> FETCH_HEAD
+	    \\Auto-merging main.txt
+	    \\CONFLICT (content): Merge conflict in main.txt
+	    \\Automatic merge failed; fix conflicts and then commit the result.
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+	    \\$ vi main.txt
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+	    \\$ git add .
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+	    \\$ git commit -m "third one"
+	    \\[master f14c639] third one
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git remote add problem2 https://github.com/GraceYueWu/HWset1_Problem2.git
+	    \\
+	    \\wx@WX-THINK ~/HWset1P2.git (master)
+	    \\$ git push problem2 master
+	    \\Username for 'https://github.com':
+	    \\Password for 'https://GraceYueWu@github.com':
+	    \\Counting objects: 18, done.
+	    \\Delta compression using up to 2 threads.
+	    \\Compressing objects: 100% (12/12), done.
+	    \\Writing objects: 100% (18/18), 1.59 KiB, done.
+	    \\Total 18 (delta 6), reused 0 (delta 0)
+	    \\To https://github.com/GraceYueWu/HWset1_Problem2.git
+	    \\ * [new branch]      master -> master
+
+	    \newpage
+	    \noindent\textbf{Problem 3 (40 pts):}
+	    Consider a team of four students, say, $A$, $B$, $C$ and $D$, 
+	    who just started working 
+	    on writing a \texttt{latex/beamer} file, say \texttt{main.tex}, 
+	    for a class presentation of their work statement.  
+	    Assume that they do not wish to coordinate their schedules for a
+	    concurrent group meeting (both virtually and physically).  
+	    Assume that:
+	    \begin{itemize}
+	    \item $A$ is in charge of \emph{Introduction},
+	    \item $B$ is of \emph{Problem Statement}, 
+	    \item $C$ is of  \emph{Timeline},
+	    \item $D$ is of \emph{Deliverable} part of the presentation.  
+	    \end{itemize}
+	    In other words, their contributions to \texttt{main.tex} do not overlap.
+	    Then, 
+	    \begin{itemize}
+	    \item first, devise a work flow strategy for the team so that they can
+	      collaborate asynchronously using \texttt{git},
+	      \item next, devise yet another \texttt{git} strategy different from your earlier
+	        proposal.  
+		\end{itemize}
+		Finally,
+		\begin{itemize}
+		\item discuss the strength and weakness of each of your proposed strategies in terms of merge
+		conflicts resolution,
+		\item make the final recommendation.  
+		\end{itemize}
+		In order to answer this question, \emph{build}
+		a mathematical model, \emph{following} the guideline from IMM. 
+		Use Section 1.4 and Section 1.5 of IMM as \emph{role models}.    
+		For example, you are to identify which variables  are exogenous 
+		and which are endogenous.  More specifically, among other things, 
+		in your model, is the preamble part of \texttt{main.tex} an endogenous 
+		or exogenous variable?  
+		Note also that in addition to this issue, there are other issues that
+		you are to consider.  So, \emph{be sure to consult IMM}. 
+		\\
+		\\Let: xij be the contribute from person i to the whole project at the j th time
+		\\       Xi be the eventual result from person i
+		\\       y is the final result of work statement
+		\\
+		\\Strategy 1, using one single branch. Because contribution from each person does not overlap, so each person edit their own part and commit to the final result. After each modification, push the file to the same branch and it won't overlap others' part. Hence the model will be like 
+		\\Y=Sum(xij),
+		\\where xij is exgenous variable and y is endogenous variable 
+		\\Strength of this strategy is that all the group members will be able to track others' work. So that they can be aware of the big picture. Although the four group members are working on different parts, they are not completely independent. Hence this strategy will help to build a better communication within the group. Weakness of this strategy are: 
+		\\1. It is easy for to forget deleting the original part before modification. In that case, there will be couple edition of each part in the final result and become very hard to do the final modification.
+		\\2. This strategy may improve the risk of accidental deleting. Because there is only one branch, people may accidentally made some change on others' work.
+		\\ 
+		\\Strategy 2, every group member build one branch inwhich they can revise their own work and commit. After all the work is done, they merge the four branches and get the final result. So the model will be:
+		\\Step 1: Xi=Sumj(xij)
+		\\step 2: Y=Sumi(Xi)
+		\\Where xij will be exgenous variables, Y and Xi will be endogenous variables
+		\\This strategy will completely avoid accidental deleting or modification. Also, in the final report, there will be only one edition of each part which is very clear. However, the weakness of this strategy is that group members will lose their view of the big picture and have no clue about what others are doing.
+		\\
+		\vskip0.25in
+		\noindent\textbf{Problem 4 (aka.\ Fair Play, 40 pts):}
+		Answer the following question:
+		\begin{verse}
+		Is the tennis game fair?
+		\end{verse}
+		Note that unlike Problem 3, this question is vaguely stated.
+		This is intensional, whence to begin, you will first need to clarify
+		what exactly your question is.
+		You may use the class discussion on this particular 
+		problem, but you \emph{may not} directly refer to our 
+		discussion.  Instead, formulate the model carefully but concisely in 
+		your own words.   
+		\\
+		\\First, define fair play in this model:
+		\\For two equally skillful players in a complete tennis game, the probability of winning will be equal no matter which player serve first.
+		\\Assume the winning probability for the serving player be a, hence the probability of winning for the other player will be 1-a.
+		\\In one game, winning the game means getting 4 points first. That contains several senarios:
+		\\1. Serving player win 4 times in a row. The probability will be p11=a*a*a*a
+		\\2. Serving player won 3 times lose one time and win the last time, the probability will be p12=4*a*a*a*(1-a)*a
+		\\3. Serving player win 3 times, lose 2 times and win the last time, the probability will be p13=(5*4)*a*a*a(1-a)*(1-a)*a
+		\\4. Serving player win 3 times, lose 3times and win the last time, the proability will be P14=(6*5*4)*a*a*a*(1-a)*(1-a)*(1-a)*a
+		\\The winnning percentage of serving player in one game P = Sumi(P1i), while the winning percentage of other player will be 1-P.
+		\\For the whole game, there will be n games. n will be a odd number. Player who won (n+1)/2 times wins.
+		\\Using n=3 as an example, the scenarios for the serving player to win the game are: 
+		\\1. Win twice in a row,
+		\\2. Win once, lose once, win the last time.
+		\\3. Lose one game, win the last two times.
+		\\Hence the winning percentage of the first serving player will be: 
+		\\Pr=P*(1-P)+P*P*P+(1-P)*(1-P)*P
+		\\If Pr=0.5, than this is a fair game.
+		\\For n=5,7,9,11,..., we can use the same method to see if it will be a fair game or not. 
+		\\However, there is some disadvantage of this model: 
+		\\First, if is easy to find out that for a>0.5, the winning percentage of first serving player will always be larger than 0.5 and leading to unfairness. Because for a even score, the first serving player will have advantage in the tiebreaker. So most games will switch serving order in tie breaker. 
+		\\Secondly, even there is a game where Pr=0.5, is it trully a fair game? This model only discussed the situation for equally skilled players. What if the two players were not completely equal? Will the game be called fair game if the weaker player could gain some advantage by serving first? 
+		\\In conclusion, further discussion could be done in this model. 
+		\\
+		\vskip0.25in
+		\noindent\textbf{Final Remarks about Problem 3 \& Problem 4:} 
+		They are open-ended problems.  However, your scores will be determined
+		by how well do you follow the exposition style outlined by IMM and
+		WMA.  For both problems, your write-up should be 
+		\begin{itemize}
+		\item self-contained,
+		\item covering all four parts of Section 1.3 of IMM,
+		\item paying a particular attention to any causal relation that you
+		  might be investigating, following Chapter 3 of WMA,
+		  \item answering questions that are explicitly asked in the problem statements.
+		  \end{itemize}
+		  For Problem 3, focus mostly on Step 2 and Step 3 of Section
+		  1.3 of IMM.  For Problem 4, focus mostly on Step 1 and Step
+		  2.  For each problem, minimum 1 pages and maximum 2 pages.
+		  \end{document}\documentclass[12pt]{article}
+		  \usepackage{listings}
+		  \usepackage[colorlinks=true,pagebackref,linkcolor=blue]{hyperref}
+		  \textwidth=7in
+		  \textheight=9.5in
+		  \topmargin=-1in
+		  \headheight=0in
+		  \headsep=.5in
+		  \hoffset  -.85in
+
+		  \lstset{
+		  basicstyle=\footnotesize\ttfamily,
+		  language=bash,
+		  upquote=true,
+		  breakatwhitespace=true,
+		  columns=fullflexible,
+		  keepspaces,
+		  %numbers=none,
+		  tabsize=3,
+		  frame=blrt,
+		  framextopmargin=5pt,
+		  showstringspaces=false,
+		  extendedchars=true
+		  }
+
+		  \pagestyle{empty}
+
+		  \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+		  \begin{document}
+
+
+
+		  \begin{center}
+		  {\bf AMS 550.400 \quad HW SET 1\quad  Due Date:  Oct 8}\\
+		  \vskip.2in
+		  {\footnotesize Last Compiled on \today}
+		  \end{center}
+
+		  \setlength{\unitlength}{1in}
+
+		  \begin{picture}(6,.1) 
+		  \put(0,0) {\line(1,0){6.25}}         
+		  \end{picture}
+
+		   
+
+		   \renewcommand{\arraystretch}{2}
+
+		   \noindent\textbf{General Instruction:} 
+		   To complete the homework set, you are required to do the followings. 
+		   Your solutions must be typed in \LaTeX\ using the course homework
+		   template.  
+		   The progression of your homework solution is to be
+		   ``recorded'' by making a git folder specifically for this homework
+		   set.  The burden of proof is on you, and if your git commit history
+		   is sparse, then you may be liable for a penalty.  
+		   A paper copy of the PDF output of your \LaTeX\ file is 
+		   to be submitted to your instructor in class on the due date.
+		   \emph{After} submitting the paper copy, but \emph{before} the end of
+		   the due date, you will upload your work to your github by making a remote repository
+		   specifically for the homework, and post the link to the repository 
+		   at the designated \emph{Discussion} forum in Blackboard by making 
+		   a thread just for you.  The repository name in your github should be
+		   \texttt{550400.homeworkset.1} and the discussion forum thread should
+		   be named \texttt{YourFirstNameMiddleInitialLastName}, e.g.,
+		   \texttt{BaracHObama} and \texttt{WillardMRommey}. 
+		   You have till the end of 
+		   the due date to finalize your github repository.  
+		   However, any commit made after the class time of the due date will be 
+		   inadmissible. \emph{Your attention to details in following this instruction will be 
+		   critical, and if not followed exactly at the time of collection, the
+		   homework set may be graded at $90\%$ of the full score}.
+
+		   \vskip.25in
+		   \noindent\textbf{Problem 1 (10 pts):}  
+		   Assume that you are starting from ``scratch'' at the directory \verb+~/+.
+		   Provide a sequence of git/bash commands that yields a git folder with 
+		   a commit history such that:
+		   \begin{itemize}
+		   \item the \emph{master} branch has commits $A$, $B$, $C$, $X$ and $D$,
+		   \item the \emph{alt} branch has commits $A$, $B$, $X$,
+		   \end{itemize}
+		   Suppose that you are currently working on \texttt{master} branch. Draw 
+		   its commit history graph (i.e., the graph portion of the output of
+		   \verb+git log --graph --oneline+).  Next, assume that 
+		   you are on \texttt{alt} branch. Draw its commit history graph.  
+		   \\
+		   \\wx@WX-THINK ~ (master)
+		   \\$ mkdir HWset1P1.git
+		   \\
+		   \\wx@WX-THINK ~ (master)
+		   \\$ cd HWset1P1.git
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git init .
+		   \\Initialized empty Git repository in \\c:/Users/wx/HWset1P1.git/.git/
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ vi main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git add .
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git commit -m "A"
+		   \\[master (root-commit) 966ebd1] A
+		   \\1 file changed, 2 insertions(+)
+		   \\create mode 100644 main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ vi main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git add .
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git commit -m "B"
+		   \\[master 093ed8d] B
+		   \\1 file changed, 1 insertion(+)
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git branch alt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ vi main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git add .
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git commit -m "C"
+		   \\[master 84ae6ec] C
+		   \\ 1 file changed, 1 insertion(+), 1 deletion(-)
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ vi main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git add .
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git checkout alt
+		   \\Switched to branch 'alt'
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (alt)
+		   \\$ git commit -m "X"
+		   \\[master 78ea7de] X
+		   \\ 1 file changed, 1 insertion(+)
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (alt)
+		   \\$ git checkout master
+		   \\Switched to branch 'master'
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ vi main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master)
+		   \\$ git merge alt
+		   \\Auto-merging main.txt
+		   \\CONFLICT (content): Merge conflict in main.txt
+		   \\Automatic merge failed; fix conflicts and then commit the result.
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+		   \\$ vi main.txt
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+		   \\$ git add .
+		   \\
+		   \\wx@WX-THINK ~/HWset1P1.git (master|MERGING)
+		   \\$ git commit -m "D"
+		   \\[master 871cb54] D
+		   \\
+		   \\$ git log --graph --oneline
+		   \\*   871cb54 D
+		   \\|\
+		   \\* | 78ea7de X
+		   \\* | 84ae6ec C
+		   \\|/
+		   \\* 093ed8d B
+		   \\* 966ebd1 A
+		   \\
+		   \vskip.25in
+		   \noindent\textbf{Problem 2 (10 pts):}
+		   Assume that you are starting from ``scratch'' at the directory \verb+~/+.
+		   Provide a sequence of git/bash commands that yields a git folder and 
+		   \begin{itemize}
+		   \item configure your git with your name and your email address,
+		   \item set up an alias for each of the git remotes listed below:
+		   \begin{verbatim}
+		   git://github.com/nhlee/550400.stanza1.git 
+		   git://github.com/nhlee/550400.stanza2.git 
+		   git://github.com/nhlee/550400.stanza3.git 
+		   \end{verbatim}
+		   Assume that each remote contains exactly single commit with 
+		   a txt file for a single (different) stanza,
+		   \item pull to combine three stanzas of a poem,
+		   \item after the first pull, add the title of the poem,
+		   \item after the second and third pull, resolve the merge conflict,
+		   \item after resolving the third pull merge conflict, push the result
+		     to your (newly created) remote repository. 
+		     \end{itemize}
+
+		     \\wx@WX-THINK ~ (master)
+		     \\$ mkdir HWset1P2.git
+		     \\
+		     \\wx@WX-THINK ~ (master)
+		     \\$ cd HWset1P2.git
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git init
+		     \\Initialized empty Git repository in c:/Users/wx/HWset1P2.git/.git/
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git config --global user.name "GraceYueWu"
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git config --global user.email graceyue523@gmail.com
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git remote add stanza1 https://github.com/nhlee/550400.stanza1.git
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git remote add stanza2 https://github.com/nhlee/550400.stanza2.git
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git remote add stanza3 https://github.com/nhlee/550400.stanza3.git
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git pull stanza1 master
+		     \\remote: Counting objects: 3, done.
+		     \\remote: Compressing objects: 100% (2/2), done.
+		     \\remote: Total 3 (delta 0), reused 3 (delta 0)
+		     \\Unpacking objects: 100% (3/3), done.
+		     \\From https://github.com/nhlee/550400.stanza1
+		     \\ * branch            master     -> FETCH_HEAD
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ vi main.txt
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git add .
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git commit -m "Title added"
+		     \\[master c1d7d6c] Title added
+		     \\ 1 file changed, 1 insertion(+)
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git pull stanza2 master
+		     \\remote: Counting objects: 5, done.
+		     \\remote: Compressing objects: 100% (2/2), done.
+		     \\remote: Total 3 (delta 0), reused 3 (delta 0)
+		     \\Unpacking objects: 100% (3/3), done.
+		     \\From https://github.com/nhlee/550400.stanza2
+		     \\ * branch            master     -> FETCH_HEAD
+		     \\Auto-merging main.txt
+		     \\CONFLICT (content): Merge conflict in main.txt
+		     \\Automatic merge failed; fix conflicts and then commit the result.
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+		     \\$ vi main.txt
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+		     \\$ git add .
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+		     \\$ git commit -m "2nd one"
+		     \\[master aad3fee] 2nd one
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git pull stanza3 master
+		     \\remote: Counting objects: 5, done.
+		     \\remote: Compressing objects: 100% (2/2), done.
+		     \\remote: Total 3 (delta 0), reused 3 (delta 0)
+		     \\Unpacking objects: 100% (3/3), done.
+		     \\From https://github.com/nhlee/550400.stanza3
+		     \\ * branch            master     -> FETCH_HEAD
+		     \\Auto-merging main.txt
+		     \\CONFLICT (content): Merge conflict in main.txt
+		     \\Automatic merge failed; fix conflicts and then commit the result.
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+		     \\$ vi main.txt
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+		     \\$ git add .
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master|MERGING)
+		     \\$ git commit -m "third one"
+		     \\[master f14c639] third one
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git remote add problem2 https://github.com/GraceYueWu/HWset1_Problem2.git
+		     \\
+		     \\wx@WX-THINK ~/HWset1P2.git (master)
+		     \\$ git push problem2 master
+		     \\Username for 'https://github.com':
+		     \\Password for 'https://GraceYueWu@github.com':
+		     \\Counting objects: 18, done.
+		     \\Delta compression using up to 2 threads.
+		     \\Compressing objects: 100% (12/12), done.
+		     \\Writing objects: 100% (18/18), 1.59 KiB, done.
+		     \\Total 18 (delta 6), reused 0 (delta 0)
+		     \\To https://github.com/GraceYueWu/HWset1_Problem2.git
+		     \\ * [new branch]      master -> master
+
+		     \newpage
+		     \noindent\textbf{Problem 3 (40 pts):}
+		     Consider a team of four students, say, $A$, $B$, $C$ and $D$, 
+		     who just started working 
+		     on writing a \texttt{latex/beamer} file, say \texttt{main.tex}, 
+		     for a class presentation of their work statement.  
+		     Assume that they do not wish to coordinate their schedules for a
+		     concurrent group meeting (both virtually and physically).  
+		     Assume that:
+		     \begin{itemize}
+		     \item $A$ is in charge of \emph{Introduction},
+		     \item $B$ is of \emph{Problem Statement}, 
+		     \item $C$ is of  \emph{Timeline},
+		     \item $D$ is of \emph{Deliverable} part of the presentation.  
+		     \end{itemize}
+		     In other words, their contributions to \texttt{main.tex} do not overlap.
+		     Then, 
+		     \begin{itemize}
+		     \item first, devise a work flow strategy for the team so that they can
+		       collaborate asynchronously using \texttt{git},
+		       \item next, devise yet another \texttt{git} strategy different from your earlier
+		         proposal.  
+			 \end{itemize}
+			 Finally,
+			 \begin{itemize}
+			 \item discuss the strength and weakness of each of your proposed strategies in terms of merge
+			 conflicts resolution,
+			 \item make the final recommendation.  
+			 \end{itemize}
+			 In order to answer this question, \emph{build}
+			 a mathematical model, \emph{following} the guideline from IMM. 
+			 Use Section 1.4 and Section 1.5 of IMM as \emph{role models}.    
+			 For example, you are to identify which variables  are exogenous 
+			 and which are endogenous.  More specifically, among other things, 
+			 in your model, is the preamble part of \texttt{main.tex} an endogenous 
+			 or exogenous variable?  
+			 Note also that in addition to this issue, there are other issues that
+			 you are to consider.  So, \emph{be sure to consult IMM}. 
+			 \\
+			 \\Let: xij be the contribute from person i to the whole project at the j th time
+			 \\       Xi be the eventual result from person i
+			 \\       y is the final result of work statement
+			 \\
+			 \\Strategy 1, using one single branch. Because contribution from each person does not overlap, so each person edit their own part and commit to the final result. After each modification, push the file to the same branch and it won't overlap others' part. Hence the model will be like 
+			 \\Y=Sum(xij),
+			 \\where xij is exgenous variable and y is endogenous variable 
+			 \\Strength of this strategy is that all the group members will be able to track others' work. So that they can be aware of the big picture. Although the four group members are working on different parts, they are not completely independent. Hence this strategy will help to build a better communication within the group. Weakness of this strategy are: 
+			 \\1. It is easy for to forget deleting the original part before modification. In that case, there will be couple edition of each part in the final result and become very hard to do the final modification.
+			 \\2. This strategy may improve the risk of accidental deleting. Because there is only one branch, people may accidentally made some change on others' work.
+			 \\ 
+			 \\Strategy 2, every group member build one branch inwhich they can revise their own work and commit. After all the work is done, they merge the four branches and get the final result. So the model will be:
+			 \\Step 1: Xi=Sumj(xij)
+			 \\step 2: Y=Sumi(Xi)
+			 \\Where xij will be exgenous variables, Y and Xi will be endogenous variables
+			 \\This strategy will completely avoid accidental deleting or modification. Also, in the final report, there will be only one edition of each part which is very clear. However, the weakness of this strategy is that group members will lose their view of the big picture and have no clue about what others are doing.
+			 \\
+			 \vskip0.25in
+			 \noindent\textbf{Problem 4 (aka.\ Fair Play, 40 pts):}
+			 Answer the following question:
+			 \begin{verse}
+			 Is the tennis game fair?
+			 \end{verse}
+			 Note that unlike Problem 3, this question is vaguely stated.
+			 This is intensional, whence to begin, you will first need to clarify
+			 what exactly your question is.
+			 You may use the class discussion on this particular 
+			 problem, but you \emph{may not} directly refer to our 
+			 discussion.  Instead, formulate the model carefully but concisely in 
+			 your own words.   
+			 \\
+			 \\First, define fair play in this model:
+			 \\For two equally skillful players in a complete tennis game, the probability of winning will be equal no matter which player serve first.
+			 \\Assume the winning probability for the serving player be a, hence the probability of winning for the other player will be 1-a.
+			 \\In one game, winning the game means getting 4 points first. That contains several senarios:
+			 \\1. Serving player win 4 times in a row. The probability will be p11=a*a*a*a
+			 \\2. Serving player won 3 times lose one time and win the last time, the probability will be p12=4*a*a*a*(1-a)*a
+			 \\3. Serving player win 3 times, lose 2 times and win the last time, the probability will be p13=(5*4)*a*a*a(1-a)*(1-a)*a
+			 \\4. Serving player win 3 times, lose 3times and win the last time, the proability will be P14=(6*5*4)*a*a*a*(1-a)*(1-a)*(1-a)*a
+			 \\The winnning percentage of serving player in one game P = Sumi(P1i), while the winning percentage of other player will be 1-P.
+			 \\For the whole game, there will be n games. n will be a odd number. Player who won (n+1)/2 times wins.
+			 \\Using n=3 as an example, the scenarios for the serving player to win the game are: 
+			 \\1. Win twice in a row,
+			 \\2. Win once, lose once, win the last time.
+			 \\3. Lose one game, win the last two times.
+			 \\Hence the winning percentage of the first serving player will be: 
+			 \\Pr=P*(1-P)+P*P*P+(1-P)*(1-P)*P
+			 \\If Pr=0.5, than this is a fair game.
+			 \\For n=5,7,9,11,..., we can use the same method to see if it will be a fair game or not. 
+			 \\However, there is some disadvantage of this model: 
+			 \\First, if is easy to find out that for a>0.5, the winning percentage of first serving player will always be larger than 0.5 and leading to unfairness. Because for a even score, the first serving player will have advantage in the tiebreaker. So most games will switch serving order in tie breaker. 
+			 \\Secondly, even there is a game where Pr=0.5, is it trully a fair game? This model only discussed the situation for equally skilled players. What if the two players were not completely equal? Will the game be called fair game if the weaker player could gain some advantage by serving first? 
+			 \\In conclusion, further discussion could be done in this model. 
+			 \\
+			 \vskip0.25in
+			 \noindent\textbf{Final Remarks about Problem 3 \& Problem 4:} 
+			 They are open-ended problems.  However, your scores will be determined
+			 by how well do you follow the exposition style outlined by IMM and
+			 WMA.  For both problems, your write-up should be 
+			 \begin{itemize}
+			 \item self-contained,
+			 \item covering all four parts of Section 1.3 of IMM,
+			 \item paying a particular attention to any causal relation that you
+			   might be investigating, following Chapter 3 of WMA,
+			   \item answering questions that are explicitly asked in the problem statements.
+			   \end{itemize}
+			   For Problem 3, focus mostly on Step 2 and Step 3 of Section
+			   1.3 of IMM.  For Problem 4, focus mostly on Step 1 and Step
+			   2.  For each problem, minimum 1 pages and maximum 2 pages.
+			   \end{document}
